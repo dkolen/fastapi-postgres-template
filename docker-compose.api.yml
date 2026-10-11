@@ -1,0 +1,12 @@
+# API only: connects to an existing Postgres defined by POSTGRES_* in .env
+#   docker compose -f docker-compose.api.yml up --build
+services:
+  api:
+    build: .
+    env_file: .env
+    ports:
+      - "${API_PORT:-8000}:8000"
+    volumes:
+      - .:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
